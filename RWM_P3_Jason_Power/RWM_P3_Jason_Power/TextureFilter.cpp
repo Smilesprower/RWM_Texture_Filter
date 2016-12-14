@@ -35,7 +35,9 @@ SDL_Rect TextureFilter::getRectBounds(int id)
 void TextureFilter::grayscaleFilter(int id)
 {
 	SDL_Texture* tempTex = m_textureMap[id]->getTexture();
-	SDL_Surface * tempSurf = m_textureMap[id]->getSurface();	
+	SDL_Surface * tempSurf = m_textureMap[id]->getSurface();
+	SDL_Rect * tempRect = &m_textureMap[id]->getDestRect();
+
 	Uint32* tempPixels = (Uint32*)m_textureMap[id]->getPixels();
 
 	int pixelCount = (tempSurf->pitch * 0.25f) *  tempSurf->h;
@@ -52,6 +54,7 @@ void TextureFilter::grayscaleFilter(int id)
 		}
 	}
 	SDL_UpdateTexture(tempTex, &tempSurf->clip_rect, tempPixels, tempSurf->pitch);
+
 	SDL_SetTextureBlendMode(tempTex, SDL_BLENDMODE_BLEND);
 }
 void TextureFilter::edgeDectection(int id)
