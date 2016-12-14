@@ -15,13 +15,7 @@ public:
 	SDL_Rect getDestRect();
 	void* getPixels();
 	bool loadFromFile(std::string fileName, int id, SDL_Renderer* renderer);
-	bool lockTexture();
-	bool unlockTexture();
-
-	int getPitch();
-	int getHeight();
-	int getWidth();
-
+	void copyPixelData();
 
 private:
 	//The actual hardware texture

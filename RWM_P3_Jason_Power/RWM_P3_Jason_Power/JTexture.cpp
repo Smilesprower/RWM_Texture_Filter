@@ -42,16 +42,12 @@ bool JTexture::loadFromFile(std::string fileName, int id, SDL_Renderer* renderer
 	m_surface = IMG_Load(fileName.c_str());
 
 	newTexture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ABGR8888, SDL_TEXTUREACCESS_STREAMING, m_surface->w, m_surface->h);
-
 	//Lock texture for manipulation
 	SDL_LockTexture(newTexture, NULL, &m_pixels, &m_pitch);
 	//Copy loaded/formatted surface pixels
 	memcpy(m_pixels, m_surface->pixels, m_surface->pitch * m_surface->h);
 	//Unlock texture to update
 	SDL_UnlockTexture(newTexture);
-
-	m_dest.w = m_surface->w;
-	m_dest.h = m_surface->h;
 
 	// Enables Transparency 
 	SDL_SetTextureBlendMode(newTexture, SDL_BLENDMODE_BLEND);
@@ -61,17 +57,8 @@ bool JTexture::loadFromFile(std::string fileName, int id, SDL_Renderer* renderer
 	return true;
 }
 
-int JTexture::getPitch()
+void JTexture::copyPixelData()
 {
-	return m_pitch;
+	memcpy(m_pixels, m_surface->pixels, m_surface->pitch * m_surface->h);
 }
 
-int JTexture::getHeight()
-{
-	return m_height;
-}
-
-int JTexture::getWidth()
-{
-	return m_width;
-}

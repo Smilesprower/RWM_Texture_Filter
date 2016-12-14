@@ -105,7 +105,7 @@ void Application::Render()
 	SDL_RenderClear(m_renderer);
 
 
-	SDL_RenderCopy(m_renderer, m_texFilter.getTexture(0), NULL, &m_texFilter.getDestRect(0));
+	SDL_RenderCopy(m_renderer, m_texFilter.getTexture(0), NULL, &m_texFilter.getRectBounds(0));
 
 	SDL_RenderPresent(m_renderer);
 }
@@ -137,10 +137,16 @@ void Application::HandleEvents()
 						m_quit = true;
 						break;
 					case SDLK_1:
-						m_texFilter.greyEverything(0);
+						m_texFilter.grayscaleFilter(0);
 						break;
 					case SDLK_2:
 						m_texFilter.resetPixels(0);
+						break;
+					case SDLK_3:
+						m_texFilter.edgeDectection(0);
+						break;
+					case SDLK_4:
+						std::vector<std::vector<double>> temp = m_texFilter.calcGaussianKernel(1);
 						break;
 				}
 			}
