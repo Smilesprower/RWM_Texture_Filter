@@ -143,10 +143,10 @@ void Application::HandleEvents()
 						m_texFilter.resetPixels(0);
 						break;
 					case SDLK_3:
-						m_texFilter.edgeDectection(0);
+						m_texFilter.pixelateFilter(0);
 						break;
 					case SDLK_4:
-						m_texFilter.calcGaussianKernel(3, 1);
+						m_texFilter.gaussianBlur1D(0, 11, 2.0);
 						break;
 				}
 			}
