@@ -22,9 +22,12 @@ public:
 	void grayscaleFilter(int id);
 	void edgeDectection(int id);
 	void resetPixels(int id);
-	std::vector<std::vector<double>> calcGaussianKernel(double weight);
+	void calcGaussianKernel(int length, float weight);
 
 private:
+	const Uint8 MAX_KERNAL_SIZE = 9;
+
 	std::map<int, JTexture*> m_textureMap;
+	std::vector<std::vector<float>> m_gaussianKernel;	
 };
 

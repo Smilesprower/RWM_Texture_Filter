@@ -146,7 +146,7 @@ void Application::HandleEvents()
 						m_texFilter.edgeDectection(0);
 						break;
 					case SDLK_4:
-						std::vector<std::vector<double>> temp = m_texFilter.calcGaussianKernel(1);
+						m_texFilter.calcGaussianKernel(3, 1);
 						break;
 				}
 			}
